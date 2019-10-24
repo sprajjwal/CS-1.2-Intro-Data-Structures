@@ -30,7 +30,10 @@ class Timer:
         f = open(self.file_name, "a+")
         f.write(str(benchmark))
         f.write("\n")
+        f.close()
 
     def load_benchmarks(self):
         f = open(self.file_name, "r+")
-        self.benchmarks = f.read().splitlines()
+        self.benchmarks = f.readlines()
+        self.benchmarks = [item.strip() for item in self.benchmarks]
+        f.close()
