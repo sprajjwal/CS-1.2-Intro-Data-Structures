@@ -6,4 +6,4 @@ if __name__ == "__main__":
     assert len(argv) != 0, "No arguments were given" # no arguments give
     query = argv[0]
     anagrams = requests.get("http://www.anagramica.com/all/:" + query).json()
-    print([stuff for stuff in anagrams["all"] if len(stuff)>1 and stuff != query]) # list of ana
+    print([stuff for stuff in anagrams["all"] if len(stuff) == len(query) and stuff != query]) # list of ana

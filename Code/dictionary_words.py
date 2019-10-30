@@ -9,8 +9,9 @@ if __name__ == "__main__":
         for line in f:
             huge_list.extend(line.split())
     str_output = ""
-    for _ in range(num_needed):
-        str_output += huge_list.pop(random.randint(0, len(huge_list)-1))
-        str_output += " "
+    for t in range(num_needed):
+        str_output += huge_list[random.randrange(len(huge_list))]
+        if t < num_needed - 1:
+            str_output += " "
     str_output += "."
     print(str_output)

@@ -9,6 +9,16 @@ def histogram(words):
             hist[word] = 1
     return hist
 
+def lis(word_dict):
+    """ creates lists of lists with indices holding frequency"""
+    lis = []
+    for word in word_dict.keys():
+        if len(lis) <= word_dict[word]:
+            print(word_dict[word])
+            lis.extend(word_dict[word] - len(lis) + 1)
+        lis[word_dict[word]].append(word)
+    return lis
+
 def unique_word(hist):
     """ counts number of unique words in a histogram"""
     return len(hist.keys())
@@ -38,7 +48,9 @@ if __name__ == "__main__":
     with open("bro_code.txt", 'r') as f:
         words = f.read().split()
         hist = histogram(words)
+        freq = lis(hist)
     print(hist["a"])
     print(unique_word(hist))
     print(frequency('a', hist))
     write_hist("bro_hist.txt", hist)
+    print([items for items in freq if len(items) > 0])
