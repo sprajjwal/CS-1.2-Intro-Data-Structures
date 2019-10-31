@@ -5,15 +5,14 @@ from histogram import histogram
 def word_sampler(hist):
     """Takes a histogram and returns a word based of its frequency"""
     total = 0
-    total += sum(hist[word] for word in hist.keys())
+    total += sum(hist.values())
     sum_prob = 0
-    hist_prob = {}
     predict = random.random()
     for key in hist.keys():
-        hist_prob[key] = hist[key]/total
-        if predict > sum_prob and predict <= sum_prob + hist_prob[key]:
+        prob = hist[key]/total
+        if predict > sum_prob and predict <= sum_prob + prob:
             return key
-        sum_prob += hist_prob[key]
+        sum_prob += prob
 
 def test_sampler(hist):
     """ tests sampler by running it 10000 times, uncomment line 32 for this"""
@@ -29,6 +28,5 @@ if __name__ == "__main__":
     with open(file, 'r') as f:
         words = f.read().split()
         hist = histogram(words)
-    # test_sampler(hist)
-    print(word_sampler(hist))
-    
+    test_sampler(hist)
+    #print(word_sampler(hist))

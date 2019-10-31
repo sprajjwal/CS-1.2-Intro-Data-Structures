@@ -40,6 +40,7 @@ def read_hist(f):
     return hist
 
 def write_hist(file_name, hist):
+    """ writes a histogram to a file"""
     with open(file_name, "w+") as f:
         for key in hist.keys():
             f.write(f"{key} {hist[key]}\n")
