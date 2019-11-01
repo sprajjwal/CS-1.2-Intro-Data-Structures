@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(130, 155, 147);
+    margin: 0;
+    padding: 0;
+    /* background-image: url("images/bro_code_logo.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+body >* {
+    padding: 0 5vw;
+}
+
+.navbar {
+    margin:0;
+    height: 10vh;
+    background-color: azure;
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar img {
+    height: 100%;
+    width: auto;
+}
+
+.navbar a{
+    align-self: center;
+}
+
+.navbar p{
+    margin:0;
+    padding: 0;
+    font-family: Impact;
+    font-size: 16px;
+    font-weight: 100;
+}
