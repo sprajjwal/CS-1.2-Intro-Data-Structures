@@ -6,6 +6,7 @@ from datetime import datetime
 import requests
 import random
 import tweeter
+import os
 
 app = Flask(__name__)
 
@@ -13,11 +14,14 @@ def get_gif(query):
     """ get's a random gif from Tenor"""
     params = {  # parameters for API request
                 "q": query,
-                "key": "RPQS73MCKCBE"
+                "key": os.environ['TENOR_KEY']
             }
-    response = requests.get("https://api.tenor.com/v1/search", params=params).json() # API request
-    gif = response["results"][random.randint(0, len(response["results"]))]
-    return gif['media'][0]['tinygif']
+    while True:
+        response = requests.get("https://api.tenor.com/v1/search", params=params).json()
+        if response: # API request
+            gif = response["results"][random.randint(0, len(response["results"]))]
+            gif = gif['media'][0]['tinygif']
+            return gif
 class Renders:
     def __init__(self, *args, **kwargs):
         self.message = ""
@@ -51,6 +55,7 @@ ren = Renders()
 
 @app.route('/')
 def foo():
+    ren.message = ""
     return ren.tweet_page()
 
 @app.route('/tweet', methods=['POST'])

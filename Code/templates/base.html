@@ -13,33 +13,25 @@
             <a href="/"><p>Bro Code</p></a>
         </nav>
 
-        <!--TWEET FORM-->
-        <form action="/tweet" method="POST">
-            <button type="submit">TWEET IT</button>
-        </form>
-
 
         <h1>Tweet Generator</h1>
         <p>Your Tweet is:</p>
         
-        <!-- TWEET-->
-        <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Sunsets don&#39;t get much better than this one over 
-                <a href="https://twitter.com/GrandTetonNPS?ref_src=twsrc%5Etfw">@GrandTetonNPS</a>. 
-                <a href="https://twitter.com/hashtag/nature?src=hash&amp;ref_src=twsrc%5Etfw">#nature</a>
-                <a href="https://twitter.com/hashtag/sunset?src=hash&amp;ref_src=twsrc%5Etfw">#sunset</a> 
-                <a href="http://t.co/YuKy2rcjyU">pic.twitter.com/YuKy2rcjyU</a>
-            </p> -->
-            <p>What is this?</p>
-            &mdash; US Department of the Interior (@Interior)
-            <a href="https://twitter.com/Interior/status/463440424141459456?ref_src=twsrc%5Etfw">{{ time }}</a>
-        </blockquote> 
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        
+        <!-- TWEET -->
         <div class='tweet'>
             <p>{{ tweet }}</p>
             <img src="{{ gif }}" alt="Missing barney?" height="{{ h }}" width="{{ w }}">
         </div>
         
+        <!--TWEET submit button-->
+        <form action="/tweet" method="POST">
+            <button type="submit">TWEET IT</button>
+            <a href="/"><button type="button">Refresh</button></a>
+        </form>
+
+        <!--TWITTER LINK-->
+        <div class="link">
+            <a href="https://twitter.com/BotBrocode" target="_blank">Here's our official twitter</a>
+        </div>
     </body>
 </html>
