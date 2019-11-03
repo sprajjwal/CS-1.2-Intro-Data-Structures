@@ -3,35 +3,38 @@
         <meta charset="utf-8">
         <title>Tweet Generator</title>
         <link rel="shortcut icon" href="static/images/bro_code_logo.jpeg">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="./static/base.css">
     </head>
     <body>
 
         <!--NAVBAR-->
-        <nav class="navbar">
-            <img src="static/images/bro_code_logo.jpeg">
-            <a href="/"><p>Bro Code</p></a>
+        <nav class="navbar navbar-light navbar-expand-lg">
+            <!-- <img src="static/images/bro_code_logo.jpeg"> -->
+            <a class="navbar-brand text-light" href="/"> Bro Code</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav d-flex justify-content-end" style="list-style: none; width:100%;">
+                    <li class="nav-item">
+                        <a href="/about" class="nav-link text-light active">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/BotBrocode" target="_blank" class="nav-link text-light">Our Twitter</a>
+                    </li>
+            </div>          
         </nav>
 
-
-        <h1>Tweet Generator</h1>
-        <p>Your Tweet is:</p>
-        
-        <!-- TWEET -->
-        <div class='tweet'>
-            <p>{{ tweet }}</p>
-            <img src="{{ gif }}" alt="Missing barney?" height="{{ h }}" width="{{ w }}">
+        <div class="content">
+            {% block content %} {% endblock %}
         </div>
         
-        <!--TWEET submit button-->
-        <form action="/tweet" method="POST">
-            <button type="submit">TWEET IT</button>
-            <a href="/"><button type="button">Refresh</button></a>
-        </form>
 
-        <!--TWITTER LINK-->
-        <div class="link">
-            <a href="https://twitter.com/BotBrocode" target="_blank">Here's our official twitter</a>
-        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
     </body>
 </html>

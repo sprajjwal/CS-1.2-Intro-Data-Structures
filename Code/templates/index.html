@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- WELCOME AREA -->
+    <div class="jumbotron">
+        <p>Welcome to this bro code generator. This website was built using FLASK, Jinja, and Markov's model
+            in python.
+        </p>
+    </div>
+
+    <div class="form-group justify-content-center">
+        <form action='/tweet'>
+            <div class="col-7 pl-0 pb-1" style="margin-left: 0;">
+                <!-- <label for="words">Number of words.</label> -->
+                <input type="number" class="form-control ml-0" name="words" min="0" placeholder="Number of words" autocomplete="off" required/>        
+            </div>
+            <button type="submit">Get tweet</button>
+        </form>
+    </div>
+{% endblock %}

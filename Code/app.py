@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from word_sampling import word_sampler
 from histogram import histogram
 import sys
@@ -18,14 +18,19 @@ def get_gif(query):
             }
     while True:
         response = requests.get("https://api.tenor.com/v1/search", params=params).json()
-        if response: # API request
-            gif = response["results"][random.randint(0, len(response["results"]))]
+        gif = response["results"][random.randint(0, len(response["results"])-1)]
+        if gif: # API request      
             gif = gif['media'][0]['tinygif']
             return gif
+
+
 class Renders:
     def __init__(self, *args, **kwargs):
         self.message = ""
+        self.count = 10
     
+    def about(self):
+        return render_template('about.html')
     
     def tweet_page(self):
         """Renders the index route"""
@@ -33,10 +38,10 @@ class Renders:
         with open(file, 'r') as f:
             words = f.read().split()
             hist = histogram(words)
-        count = 7 #request.form.get('num_words')
-        for ind in range(count):
+        self.count = int(request.args.get('words'))
+        for ind in range(self.count):
             self.message += word_sampler(hist)
-            if ind < count - 1:
+            if ind < self.count - 1:
                 self.message += " "
         self.message = self.message.capitalize()
         self.message += "."
@@ -44,21 +49,34 @@ class Renders:
         h = gif['dims'][1] * 2.5
         w = gif['dims'][0] * 2.5
         source = gif['url']
-        return render_template('base.html', tweet=self.message, time=datetime.now(), gif=source, h=h, w=w)
+        return render_template('tweet.html', tweet=self.message, time=datetime.now(), gif=source, h=h, w=w)
 
     def send_tweet(self):
         message = self.message
         tweeter.tweet(message)
         return redirect(url_for('foo'))
 
+    def index(self):
+        return render_template('index.html')
+
 ren = Renders()
 
 @app.route('/')
-def foo():
+def index():
     ren.message = ""
+    return ren.index()
+
+@app.route('/tweet')
+def tweet():
+    ren.count = 7 #default
     return ren.tweet_page()
 
-@app.route('/tweet', methods=['POST'])
+@app.route('/send_tweet', methods=['POST'])
 def foo1():
     return ren.send_tweet()
+
+@app.route('/about')
+def about():
+    return ren.about()
+    
 

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Tweet Generator</h1>
+    <p>Your Tweet is:</p>
+
+    <!-- TWEET -->
+    <div class='tweet'>
+        <p>{{ tweet }}</p>
+        <img src="{{ gif }}" alt="Missing barney?" height="{{ h }}" width="{{ w }}">
+    </div>
+
+    <!--TWEET submit button-->
+    <form action="/tweet" method="POST">
+        <button type="submit">TWEET IT</button>
+        <a href="/"><button type="button">Refresh</button></a>
+    </form>
+{% endblock %}
