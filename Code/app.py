@@ -54,7 +54,7 @@ class Renders:
     def send_tweet(self):
         message = self.message
         tweeter.tweet(message)
-        return redirect(url_for('foo'))
+        return redirect(url_for('index'))
 
     def index(self):
         return render_template('index.html')
@@ -63,11 +63,11 @@ ren = Renders()
 
 @app.route('/')
 def index():
-    ren.message = ""
     return ren.index()
 
 @app.route('/tweet')
 def tweet():
+    ren.message = ""
     ren.count = 7 #default
     return ren.tweet_page()
 
