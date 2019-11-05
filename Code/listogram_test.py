@@ -55,7 +55,6 @@ class ListogramTest(unittest.TestCase):
         histogram.add_count('fish', 4)
         histogram.add_count('food', 5)
         # Verify updated frequency count of all words
-        print(histogram.frequency('one'))
         assert histogram.frequency('one') == 1
         assert histogram.frequency('two') == 3
         assert histogram.frequency('red') == 1
