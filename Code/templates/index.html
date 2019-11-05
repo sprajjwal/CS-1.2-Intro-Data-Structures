@@ -4,17 +4,17 @@
 
     <!-- WELCOME AREA -->
     <div class="jumbotron">
-        <p>Welcome to this bro code generator. This website was built using FLASK, Jinja, and Markov's model
+        <p class="text-center" style="font-family: 'Oswald';">Welcome to this bro code generator. This website was built using FLASK, Jinja, and Markov's model
             in python.
         </p>
     </div>
 
     <div class="form-group justify-content-center">
         <form action='/tweet' class="d-flex justify-content-center">
-            <div class="pl-0 pb-1" >
-                <input type="number" class="ml-0" name="words" min="0" placeholder="Number of words" autocomplete="off" style="width:50vw;" required/>        
+            <div class="pl-0 form-group mb-0 mr-1" >
+                <input type="number" class="form-control mb-0" name="words" min="0" placeholder="Number of words" autocomplete="off" style="width:50vw; height: 100%;" required/>        
             </div>
-            <button type="submit">Get tweet</button>
+            <button class="btn btn-primary" type="submit">Get tweet</button>
         </form>
     </div>
 {% endblock %}

@@ -59,6 +59,7 @@ class Renders:
     def index(self):
         return render_template('index.html')
 
+# flask 
 ren = Renders()
 
 @app.route('/')
@@ -72,11 +73,10 @@ def tweet():
     return ren.tweet_page()
 
 @app.route('/send_tweet', methods=['POST'])
-def foo1():
+def send_tweet():
     return ren.send_tweet()
 
 @app.route('/about')
 def about():
     return ren.about()
     
-

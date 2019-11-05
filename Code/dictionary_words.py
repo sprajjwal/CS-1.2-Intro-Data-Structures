@@ -1,9 +1,8 @@
 from sys import argv
 import random
 
-if __name__ == "__main__":
-    assert len(argv) == 2, "Incorrect number of arguments"
-    num_needed = int(argv[1])
+def dictionary_word(num_needed):
+    """returns n random words from word list"""
     huge_list = []
     with open("/usr/share/dict/words", "r") as f:
         for line in f:
@@ -14,4 +13,10 @@ if __name__ == "__main__":
         if t < num_needed - 1:
             str_output += " "
     str_output += "."
-    print(str_output)
+    return str_output
+
+if __name__ == "__main__":
+    assert len(argv) == 2, "Incorrect number of arguments"
+    num_needed = int(argv[1])
+    print(dictionary_word(num_needed))
+    

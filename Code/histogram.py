@@ -9,15 +9,15 @@ def histogram(words):
             hist[word] = 1
     return hist
 
-def lis(word_dict):
-    """ creates lists of lists with indices holding frequency"""
-    lis = []
-    for word in word_dict.keys():
-        if len(lis) <= word_dict[word]:
-            print(word_dict[word])
-            lis.extend(word_dict[word] - len(lis) + 1)
-        lis[word_dict[word]].append(word)
-    return lis
+# def lis(word_dict):
+#     """ creates lists of lists with indices holding frequency"""
+#     lis = []
+#     for word in word_dict.keys():
+#         if len(lis) <= word_dict[word]:
+#             print(word_dict[word])
+#             lis.extend(word_dict[word] - len(lis) + 1)
+#         lis[word_dict[word]].append(word)
+#     return lis
 
 def unique_word(hist):
     """ counts number of unique words in a histogram"""
