@@ -7,6 +7,7 @@ import requests
 import random
 import tweeter
 import os
+from markov import Markogram
 
 app = Flask(__name__)
 
@@ -37,14 +38,17 @@ class Renders:
         file = "bro_code.txt"
         with open(file, 'r') as f:
             words = f.read().split()
-            hist = histogram(words)
+        #     hist = histogram(words)
         self.count = int(request.args.get('words'))
-        for ind in range(self.count):
-            self.message += word_sampler(hist)
-            if ind < self.count - 1:
-                self.message += " "
-        self.message = self.message.capitalize()
-        self.message += "."
+        # for ind in range(self.count):
+        #     self.message += word_sampler(hist)
+        #     if ind < self.count - 1:
+        #         self.message += " "
+        # self.message = self.message.capitalize()
+        # self.message += "."
+        m = Markogram(words)
+        self.message = m.get_string(self.count)
+        print(self.message)
         gif = get_gif("barney stinson")
         h = gif['dims'][1] * 2.5
         w = gif['dims'][0] * 2.5
