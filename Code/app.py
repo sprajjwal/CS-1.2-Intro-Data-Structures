@@ -48,7 +48,6 @@ class Renders:
         # self.message += "."
         m = Markogram(words)
         self.message = m.get_string(self.count)
-        print(self.message)
         gif = get_gif("barney stinson")
         h = gif['dims'][1] * 2.5
         w = gif['dims'][0] * 2.5
