@@ -26,7 +26,7 @@ def get_gif(query):
 
 
 class Renders:
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         self.message = ""
         self.count = 10
     
@@ -35,7 +35,7 @@ class Renders:
     
     def tweet_page(self):
         """Renders the index route"""
-        file = "bro_code.txt"
+        file = "chuck.txt"
         with open(file, 'r') as f:
             words = f.read().split()
         #     hist = histogram(words)
@@ -48,7 +48,7 @@ class Renders:
         # self.message += "."
         m = Markogram(words)
         self.message = m.get_string(self.count)
-        gif = get_gif("barney stinson")
+        gif = get_gif("chuck norris")
         h = gif['dims'][1] * 2.5
         w = gif['dims'][0] * 2.5
         source = gif['url']
