@@ -121,7 +121,6 @@ class LinkedList(object):
                         prev.next = None
                     else:
                         prev.next = cur_node.next
-                    
                     self.size -= 1
                     return
                 prev = cur_node
@@ -156,7 +155,7 @@ def test_linked_list():
     print('length: {}'.format(ll.length()))
 
     # Enable this after implementing delete method
-    delete_implemented = False
+    delete_implemented = True
     if delete_implemented:
         print('\nTesting delete:')
         for item in ['B', 'C', 'A']:
