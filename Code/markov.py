@@ -56,6 +56,6 @@ if __name__ == "__main__":
     # print(f"tokens: {dic.tokens}")
     # print(f"types: {dic.types}")
     # print(dic.get_string(20))
-    for key in dic.keys():
-        print(f"{key}:  {dic[key]}")
+    # for key in dic.keys():
+    #     print(f"{key}:  {dic[key]}")
        
