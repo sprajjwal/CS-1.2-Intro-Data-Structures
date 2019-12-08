@@ -32,30 +32,31 @@ class Markogram(dict):
         """gets a random word  that appears after key"""
         return self[key].sample()
 
-    def get_string(self, len=1):
+    def get_string(self, length=1):
         """returns a string of len based on markov's chain"""
         start = random.choice(list(self.keys()))
-        print(start)
-        strin = start[0]
+        strin = list(start)
         prev = start
-        for _ in range(len-1):
+        for _ in range(length - self.order):
             prev = self.sample(prev)
-            strin += f" {prev[0]}"
-        strin += "."
+            strin.append(f"{prev[self.order-1]}")
+        strin = ' '.join(strin)
+        if strin[len(strin)-1] != '.':
+            strin += "."
         return strin.capitalize()
 
 
 if __name__ == "__main__":
-    # with open("bro_code.txt", 'r') as f:
-    #     words = f.read()
-    words = "I went left, you went right, I went left, I went right,"
+    with open("trump.txt", 'r') as f:
+        words = f.read()
+    # words = "I went left, you went right, I went left, I went right,"
     dic = Markogram(words.split(), order=3)
     # for key in dic.keys():
     #     print(f"{key}: {dic[key]}")
     # print(dic.sample('a'))
     # print(f"tokens: {dic.tokens}")
     # print(f"types: {dic.types}")
-    # print(dic.get_string(20))
+    print(dic.get_string(20))
     # for key in dic.keys():
     #     print(f"{key}:  {dic[key]}")
        

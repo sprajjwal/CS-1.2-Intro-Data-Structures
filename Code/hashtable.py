@@ -9,6 +9,7 @@ class HashTable(object):
         """Initialize this hash table with the given initial size."""
         # Create a new list (used as fixed-size array) of empty linked lists
         self.buckets = [LinkedList() for _ in range(init_size)]
+        self.size = 0
 
     def __str__(self):
         """Return a formatted string representation of this hash table."""
@@ -57,11 +58,8 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Count number of key-value entries in each bucket
-
-        return len(self.items())
+        TODO: Running time: O(1) Why and under what conditions?"""
+        return self.size
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
@@ -104,6 +102,7 @@ class HashTable(object):
                 bucket.replace((k, v), (key, value))
                 return
         bucket.append((key,value))
+        self.size += 1
         # TODO: Otherwise, insert given key-value entry into bucket
 
     def delete(self, key):
@@ -112,14 +111,13 @@ class HashTable(object):
         # TODO: Find bucket where given key belongs
         bucket = self.buckets[self._bucket_index(key)]
         # TODO: Check if key-value entry exists in bucket
-        for k,v in bucket.items():
-            # TODO: If found, delete entry associated with given key
-            if k == key:
-                bucket.delete((k,v))
-                return
-        # TODO: Otherwise, raise error to tell user delete failed
-        raise KeyError(f"Key not found: {key}")
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        node = bucket.find(lambda k: k[0] == key)
+        if node:
+            bucket.delete((key, node[1]))
+            self.size -= 1
+        else:
+            raise KeyError(f"Key not found: {key}")
+ 
 
 
 def test_hash_table():

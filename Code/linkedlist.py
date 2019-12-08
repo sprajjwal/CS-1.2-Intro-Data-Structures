@@ -83,7 +83,7 @@ class LinkedList(object):
 
         
 
-    def find(self, quality):
+    def find(self, quality, case=1):
         """Return an item from this linked list satisfying the given quality.
         Best case running time: O(1) if the item at node satisfies or if the list
         is empty. Worst case running time: O(n)  if the item we are looking for
@@ -94,8 +94,12 @@ class LinkedList(object):
             cur_node = self.head
             while cur_node:
                 if quality(cur_node.data):
-                    return cur_node.data
+                    if case==1:
+                        return cur_node.data
+                    else:
+                        return cur_node
                 cur_node = cur_node.next
+            return None
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
