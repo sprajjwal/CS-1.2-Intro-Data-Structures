@@ -35,7 +35,7 @@ class Renders:
     
     def tweet_page(self):
         """Renders the index route"""
-        file = "chuck.txt"
+        file = "trump.txt"
         with open(file, 'r') as f:
             words = f.read().split()
         #     hist = histogram(words)
@@ -46,9 +46,9 @@ class Renders:
         #         self.message += " "
         # self.message = self.message.capitalize()
         # self.message += "."
-        m = Markogram(words)
-        self.message = m.get_string(self.count)
-        gif = get_gif("chuck norris")
+        m = Markogram(words,3)
+        self.message = f"<h1>{m.get_string(self.count)}</h1>"
+        gif = get_gif("Donald Trump")
         h = gif['dims'][1] * 2.5
         w = gif['dims'][0] * 2.5
         source = gif['url']

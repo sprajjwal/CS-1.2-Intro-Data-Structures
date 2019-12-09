@@ -27,7 +27,7 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) because we accessed all n items"""
         # Collect all keys in each bucket
         all_keys = []
         for bucket in self.buckets:
@@ -37,9 +37,7 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        # TODO: Collect all values in each bucket
+        Running time: O(n) because we access all n items"""
 
         all_vals = []
         for bucket in self.buckets:
@@ -49,7 +47,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) because we access all n items"""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -58,15 +56,12 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(1) Why and under what conditions?"""
+        Running time: O(1) becuase we hold the size as a property"""
         return self.size
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-
+        Running time: O(n/b) average case with n items in hashtable and b buckets"""
         try:
             self.get(key)
         except KeyError:
@@ -77,40 +72,32 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
+        Running time: O(n/b) average case with n items in hashtable and b buckets"""
         bucket = self.buckets[self._bucket_index(key)]
-        # TODO: Check if key-value entry exists in bucket
+    
         for k, v in bucket.items():
-        # TODO: If found, return value associated with given key
-            if k == key:
+       if k == key:
                 return v
-        # TODO: Otherwise, raise error to tell user get failed
         raise KeyError(f"Key not found: {key}")
         # Hint: raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
+        Running time: O(n/b) Why and under what conditions?"""
         bucket = self.buckets[self._bucket_index(key)]
-
-        # TODO: Check if key-value entry exists in bucket
-        for k,v in bucket.items():
-            # TODO: If found, update value associated with given key
+        for k,v in bucket.items():  
             if k == key:
                 bucket.replace((k, v), (key, value))
                 return
         bucket.append((key,value))
         self.size += 1
-        # TODO: Otherwise, insert given key-value entry into bucket
+        
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
+         Running time: O(n/b) average case with n items in hashtable and b buckets"""
+      
         bucket = self.buckets[self._bucket_index(key)]
-        # TODO: Check if key-value entry exists in bucket
         node = bucket.find(lambda k: k[0] == key)
         if node:
             bucket.delete((key, node[1]))

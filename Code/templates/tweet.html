@@ -6,7 +6,7 @@
 
     <!-- TWEET -->
     <div class='tweet'>
-        <p>{{ tweet }}</p>
+        {{ tweet|safe }}
         <img src="{{ gif }}" alt="Missing barney?" height="{{ h }}" width="{{ w }}">
     </div>
 
