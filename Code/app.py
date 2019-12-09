@@ -47,12 +47,15 @@ class Renders:
         # self.message = self.message.capitalize()
         # self.message += "."
         m = Markogram(words,3)
-        self.message = f"<h1>{m.get_string(self.count)}</h1>"
+        message = m.get_string(self.count)
+        self.message = message
+        message = tweeter.str_to_html(message)
+        
         gif = get_gif("Donald Trump")
         h = gif['dims'][1] * 2.5
         w = gif['dims'][0] * 2.5
         source = gif['url']
-        return render_template('tweet.html', tweet=self.message, time=datetime.now(), gif=source, h=h, w=w)
+        return render_template('tweet.html', tweet=message, time=datetime.now(), gif=source, h=h, w=w)
 
     def send_tweet(self):
         message = self.message
